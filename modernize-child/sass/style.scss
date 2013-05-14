@@ -1,0 +1,529 @@
+/*
+Theme Name: Modernize Child Theme
+Theme URI: -
+Description: Modernize WordPress Theme
+Template: modernize
+Author: Goodlayers
+Author URI: http://goodlayers.com
+*/
+
+@import url("../modernize/style.css");
+
+// MIXINS
+@mixin heading-shadow {
+  text-shadow: 3px 3px 0px #000;
+  filter: dropshadow(color=#fff, offx=3, offy=3);
+}
+@mixin book-shape {
+  // slightly rounded corners
+  $borderRadius: 6px;
+  -webkit-border-radius: $borderRadius;
+  border-radius: $borderRadius;
+  //drop shadow
+  $blackAlpha: rgba(5,5,7,.8);
+  -webkit-box-shadow:  10px 10px 8px 8px $blackAlpha;
+  box-shadow:  10px 10px 8px 8px $blackAlpha;
+}
+
+
+// FONTS (Google fonts set in Modernize theme)
+$siteTitleFont: 'Permanent Marker',Verdana, Arial,  sans-serif;
+$siteSubtitleFont: 'Walter Turncoat', Verdana, Arial,  sans-serif;
+$stunningTitle: $siteTitleFont;
+$headingFont: 'Valeria Round', Verdana, Arial,  sans-serif;
+$bodyFont: $headingFont;
+$navFont: $siteSubtitleFont;
+
+/*
+COLOR SCHEME: adapted from:
+Old Comic Book
+http://www.colourlovers.com/palette/1660052/Old_Comic_Book
+*/
+$black: rgb(5,5,7);
+$yellow: rgb(248,213,7);
+$red: rgb(228,46,69);
+$cream: lighten(rgb(255,243,190),5%);
+$blue: rgb(50,87,106);
+$white: lighten($cream, 10%);
+$orange: darken(rgb(238,125,48),10%);
+$green: rgb(123,145,2);
+
+$background: lighten($black,15%);
+$headerColor: $orange;
+$pageColor: $cream;
+$footerColor: $black;
+$linkColor: $orange;
+$linkHoverColor: darken($green,10%);
+$footerBackground: $orange;
+$footerText: $blue;
+$navColor: $black;
+$mobileNavBackground: $cream;
+$navBackground: $black;
+$calendarBorder: lighten($black, 40%);
+
+
+.columns{
+  margin: 20px;
+}
+
+.gdl-page-content img {
+  max-width: 90%;
+  text-align:center;
+}
+
+// hide stupid dividers
+h1.stunning-text-title {
+  font-size:40px;
+  line-height:40px;
+  color:$green; font-family: $stunningTitle; @include heading-shadow;
+} // for all h1 tags
+.blog-thumbnail-info, .gce-list li,div.gce-widget-list li.gce-feed-3, div.custom-sidebar ul li,
+div.custom-sidebar ul li li:last-child, blockquote, .gdl-divider + .gdl-divider, .gdl-divider, h1.gdl-divider,
+.content-wrapper .gdl-divider, div.left-sidebar-wrapper .custom-sidebar-title
+{ border:none !important;}
+
+
+
+h2, h3, h4, h5, h6, .gdl-title{ font-family: $headingFont; font-weight: 800; color:$green}
+
+h1{ font-size: 34px;line-height:34px; }
+h2{ font-size: 20px; line-height:20px; color:darken($blue,5%);}
+h3{ font-size: 18px; }
+h4{ font-size: 16px; }
+h5{ font-size: 14px; }
+h6{ font-size: 12px; }
+
+//for text-heavy pages (hours and location)
+h2 {margin-top: 40px;}
+.gcalendar h2 {margin-top:0;}
+
+// BODY
+html {
+  background: $background;
+}
+div.container {
+  margin: 0 auto;
+  padding: 10px;
+  background: $blue;
+  padding: 40px;
+  @include book-shape;
+/*
+  background-image: url('images/background.png');
+  background-repeat: repeat;
+  background-size:auto auto;
+  background-position: top left;
+*/
+}
+
+.content-wrapper{
+  background-image: url('images/page-top.png'),url('images/page-bottom.png'),url('images/page-middle.png');
+  background-size: 100% auto;
+  background-repeat: no-repeat, no-repeat, repeat-y;
+  background-position: left top, left bottom, left 20px;
+
+  .custom-sidebar {
+    margin: 0 0 0 10px; // keep from bleeding into content
+    h3 {color:$blue; margin:0;}
+    .gdl-divider ul {margin: -20px 0 0 0;}
+    h4, li{ margin: 0; font-size:14px;}
+    p{margin:0; font-size: 12px;}
+    li:last-child {margin: 0 0 60px 0;}
+  }
+
+  .sixteen {margin: 0 40px 0 0;} // nudge right colum away from edge
+
+  //hide comment links
+  .blog-thumbnail-comment, .single-thumbnail-comment, div.blog-item-holder .blog-item2 .blog-thumbnail-comment  {display:none;}
+
+}
+
+#search-text{margin-bottom:20px}// bump container down for mobile;
+
+body {
+  font-size: 15px;
+  font-family: $bodyFont;
+  a{color: $linkColor; font-weight:900;}
+  a:hover{ color: $linkHoverColor; }
+
+  .container {
+      padding: 10px;
+  }
+}
+
+
+
+// PAGE ELEMENTS
+
+.tiltLeft{
+    -webkit-transform: rotate(-2deg);
+    -moz-transform: rotate(-2deg);   }
+.tiltRight{
+    -webkit-transform: rotate(2deg);
+    -moz-transform: rotate(2deg);
+}
+
+.border {
+    padding: 20px;
+    background: $white url(images/vintage_speckles.png) repeat top left;
+}
+
+.floatLeft {float:left;}
+.floatRight{float:right;}
+.clearRight{clear:right;}
+.clearLeft{clear:left;}
+.clearBoth{clear:both;}
+
+img.size-full {margin:20px;}
+
+p.bumpDown {
+  padding-bottom:20px;
+}
+p.bumpUp {
+  padding-top:20px;
+}
+
+
+div.gallery-thumbnail-image img{
+  width:120px;
+}
+
+
+
+// HEADER
+
+#header {
+  background-image: url('images/header-mobile-long.png');
+  background-repeat: no-repeat;
+  background-size:100% 100%;
+  background-position: top center;
+  text-align:center;
+  margin: 0 0 20px 0;
+  h1 {
+    font-family: $siteTitleFont;
+    font-size: 36px;
+    line-height: 36px;
+    @include heading-shadow;
+    margin:20px 0 0 0;
+    color: $headerColor;
+  }
+  a:hover {color: $headerColor;} // lighter compass mixin doesn't work here
+  p {
+    font-family: $siteSubtitleFont;
+    font-size: 16px;
+    font-weight:900;
+    margin-top: -2px 0 0 0;
+    color: $black;
+  }
+}
+
+
+
+//FOOTER
+
+// This stuff is awful. Fix via footer.php later
+.footer-wrapper{
+  overflow:hidden;
+  max-width:98%;
+
+  clear:both;
+  text-align: center;
+  color: $orange;
+  background:$blue;
+  div {
+    margin:0 auto;
+    float:none;
+    text-align:center;
+    clear:both;
+    p {
+      margin:0;
+      padding:0;
+      font-size:12px;
+      line-height:16px;
+    }
+    a {color:$cream;}
+    a:hover{color:$blue;}
+  }
+    #footer1{margin-top:30px;}
+    #footer2 {
+    margin: 0 auto;
+    text-align:center;
+      a {
+        width:20%;
+        float:left;
+        margin:10px 0;
+      }
+      a:first-child{margin-left:40%;}
+    }
+    #footer3{margin-bottom:40px;}
+}
+
+
+// NAVIGATION
+
+  div.responsive-menu-wrapper {
+    width: 80%;
+    margin: 0 auto;
+    display: block;
+    #menu-main{
+      font-family: $headingFont;
+      font-size: 20px;
+      line-height:20px;
+      font-weight:800;
+      color: $black;
+    }
+  }
+
+  div.navigation-wrapper {display: none;}
+
+
+  #menu-main, #menu-main-1{
+    clear:both;
+    font-family: $navFont;
+    font-size: 15px;
+    font-weight:800;
+    color: $black;
+    a {color:$black;}
+    a:hover {color: $cream;}
+  }
+
+
+
+// blog posts
+//hide comment link
+.blog-thumbnail-comment, .sixteen .single-thumbnail-comment {display:none;}
+
+#blog-item-holder {
+  .blog-item2 {padding: 0;}
+  .blog-thumbnail-info {font-size:14px;color:$blue;margin:-10px 0 20px -20px;}
+}
+// old posts that span all columns
+.archive-wrapper {
+  padding: 30px;
+  .blog-thumbnail-context {padding-right:40px;}
+}
+.sixteen.columns {
+  .single-thumbnail-title, .single-content, {margin:40px 40px 10px 40px;}
+  .single-thumbnail-info {margin: 0 0 0 40px;}
+  .social-share-title, .social-shares{margin:0 0 0 40px;}
+  .about-author-wrapper {margin-left:-100px;}
+}
+
+
+
+// Google Calendar Events Plugin
+
+// Calendar page list
+
+.gce-page-list .gce-list p{ /* Each piece of information in the list */
+	margin:0;
+}
+
+.gce-list li{
+	list-style-type:none;
+	margin:20px 0;
+	padding:0;
+  border-bottom: 1px solid $calendarBorder;
+  h4{color:$blue;}
+}
+
+
+// SPECIFIC PAGE ITEMS
+
+ul.booze {
+  li {margin: 4px 0;}
+}
+
+#homeEvents{
+  ul, .gce-page-list li{border:none;}
+  p.bumpDown {margin-top:20px;}
+  ul li + li{display:none;} // hide second event, if one displays
+}
+
+// blog posts
+#blog-item-holder {
+  .blog-item2 {padding: 0;}
+  .blog-thumbnail-info {font-size:14px;color:$blue;margin:-10px 0 20px -20px;}
+}
+// old posts that span all columns
+.archive-wrapper {
+  padding: 30px;
+  .blog-thumbnail-context {padding-right:40px;}
+}
+.sixteen.columns {
+  .single-thumbnail-title, .single-content, {margin:40px 40px 10px 40px;}
+  .single-thumbnail-info {margin: 0 0 0 40px;}
+  .social-share-title, .social-shares{margin:0 0 0 40px;}
+  .about-author-wrapper {margin-left:-100px;}
+}
+
+
+//mobile home page
+#jeepers, #homeEvents {clear:both;}
+#jeepers h4 {
+  text-align:center;
+  color: $blue;
+  font-size: 12px;
+  font-style:italic;
+}
+
+/* RESPONSIVE SETTINGS */
+
+@media screen and (min-width: 500px){
+  #header {
+    background-image: url('images/header-mobile.png');
+  }
+}
+
+@media screen and (min-width: 770px) {
+
+// fix image size to regular from mobile
+  .gdl-page-content img {
+    max-width: 100%;
+  }
+
+// size fonts up
+  h1.stunning-text-title{ font-size:48px; line-height:48px;} // for all h1 tags
+  h1{ font-size: 44px;line-height:44px; }
+  h2{ font-size: 24px; line-height:24px;}
+  h3{ font-size: 18px; }
+  h4{ font-size: 16px; }
+  h5{ font-size: 14px; }
+  h6{ font-size: 12px; }
+
+  h1.stunning-text-title {
+    margin: 0 0 0 -35px;
+  }
+
+  //for text-heavy pages (hours and location)
+  h2 {margin-top: 40px;}
+  .gcalendar h2 {margin-top:0;}
+
+
+    /*Home Page -- switch to floated elements */
+
+    #intro {
+        clear: both;
+        width: 80%;
+        margin: 0 0 30px 10%;
+    }
+
+    #postcard{
+        width: 40%;
+        float:left;
+        margin: 40px 0 20px 5%;
+    }
+
+
+    #quotes {
+        width:45%;
+        float:left;
+        margin: 0 0 0 5%;
+        text-align:right;
+    }
+
+    #homeEvents {
+        width: 60%;
+        float:left;
+        clear:none;
+        text-align:right;
+        margin: 40px 0 0 0;
+    }
+    #jeepers {
+        width: 30%;
+        float:right;
+        clear:both;
+        text-align:left;
+        margin: 20px 30px 0 0;
+        h4 {
+            text-align:left;
+            margin: 0 0 20px 40px;
+        }
+    }
+}
+
+
+@media screen and (min-width: 1100px) {
+  #header{
+    background-image: url('images/header.png');
+    text-align:left;
+    h1 {
+      font-size: 58px;
+      line-height:58px;
+      margin:30px 0 10px 20px;
+    }
+    p {
+      font-size: 22px;
+      margin: 0px 0 40px 60px;
+    }
+  }
+// show regular nav and hide mobile nav
+
+    div.responsive-menu-wrapper{
+      display:none;
+    }
+    div.navigation-wrapper {
+      display:block;
+      #menu-main-1 {
+        font-size:13px;
+        width: 960px;
+        height:60px;
+        margin: 0px 0 10px 10px;
+        padding: 0 0;
+        background-image: url('images/nav-border.png');
+        background-size: 960px auto;
+        background-repeat: no-repeat;
+        background-position: top center;
+        li {margin: 12px 0 0 0;}
+        li:first-child {margin-left:5px;}
+      }
+   }
+
+
+  .footer-wrapper {
+    width: 940px;
+    margin-top: 10px;
+    max-width: 940px; // need this to keep box from popping out of container
+    overflow:hidden;// need because only floated divs later on
+    background:none;
+    background-image: url('images/nav-border.png');
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: top center;
+    padding:20px;
+    color: $black;
+    p {text-align:left};
+    div {
+      clear:none;
+      float:left;
+      line-height:14px;
+      margin:0;
+    }
+    #footer1 {
+        margin:0;
+        width:60%;
+        float:left;
+    }
+
+    #footer2 {
+        width:10%;
+        margin: 0 0 0 0;
+        a{margin-top:6px;}
+        a:first-child{margin-right:10px}
+    }
+
+    #footer3 {
+        width:25%;
+        float:right;
+        p {text-align:right;}
+        margin-bottom:0;
+    }
+  }
+
+  .body-wrapper {
+    margin-top: 50px;
+    margin-bottom: 40px;
+  }
+
+
+
+}// end 1000px
